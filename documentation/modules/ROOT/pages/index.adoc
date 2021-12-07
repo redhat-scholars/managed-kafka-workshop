@@ -5,6 +5,30 @@
 [.text-center.strong]
 == Introduction
 
+Welcome to the OpenShift Streams for Apache Kafka workshop.
+
+As a developer of applications and services, you can use OpenShift Streams for Apache Kafka to create and set up Kafka instances and connect your applications and services to these instances. Streams for Apache Kafka is a managed cloud service that enables you to add Kafka data-streaming functionality in your applications without having to install, configure, run, and maintain your own Kafka clusters.
+
+In this workshop you will:
+
+* Create and inspect a Kafka instance using OpenShift Streams for Apache Kafka.
+* Create a service account to connect to the Kafka instance.
+* Create a topic in the kafka instance.
+* Use link:https://github.com/edenhill/kcat[kcat] to produce and consume messages for the Kafka instance.
+* Use the Red Hat OpenShift Application Services (RHOAS) Operator and CLI to connect the OpenShift Streams for Apache Kafka to an OpenShift cluster.
+* Bind a Quarkus application to OpenShift Streams for Apache Kafka using the Red Hat OpenShift Application Services CLI.
+
 
 [.tiles.browse]
 == Browse modules
+
+[.tile]
+.xref:01-getting-started.adoc[Getting Started]
+* xref:01-getting-started.adoc#prerequisite[Prerequisites]
+* xref:01-getting-started.adoc#redhataccount[Create a Red Hat Account]
+* xref:01-getting-started.adoc#kafka[Provision a Kafka instance]
+* xref:01-getting-started.adoc#serviceaccount[Create a Service Account]
+* xref:01-getting-started.adoc#serviceaccountpermissions[Set Permissions for a Service Account]
+* xref:01-getting-started.adoc#topic[Create a Kafka Topic]
+
+
