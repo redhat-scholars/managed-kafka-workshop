@@ -24,7 +24,7 @@ This workshop uses the link:https://developers.redhat.com/developer-sandbox[Deve
 == Browse modules
 
 [.tile]
-.xref:01-getting-started.adoc[Getting Started]
+.xref:01-getting-started.adoc[1. Getting Started]
 * xref:01-getting-started.adoc#prerequisite[Prerequisites]
 * xref:01-getting-started.adoc#redhataccount[Create a Red Hat Account]
 * xref:01-getting-started.adoc#kafka[Provision a Kafka instance]
@@ -33,9 +33,15 @@ This workshop uses the link:https://developers.redhat.com/developer-sandbox[Deve
 * xref:01-getting-started.adoc#topic[Create a Kafka Topic]
 
 [.tile]
-.xref:02-using-kcat.adoc[Using kcat with Kafka instances in Streams for Apache Kafka]
+.xref:02-using-kcat.adoc[2. Using kcat with Kafka instances in Streams for Apache Kafka]
 * xref:02-using-kcat.adoc#devsandboxaccess[Get access to the Developer Sandbox]
 * xref:02-using-kcat.adoc#toolsimage[Install the tools image on Developer Sandbox]
 * xref:02-using-kcat.adoc#kcatconnect[Configuring kcat to connect to a Kafka instance]
 * xref:02-using-kcat.adoc#kcatproduce[Producing messages in kcat]
 * xref:02-using-kcat.adoc#kcatconsume[Consuming messages in kcat]
+
+[.tile]
+.xref:03-connect-streams-apache-kafka.adoc[3. Connecting OpenShift Streams for Apache Kafka]
+* xref:03-connect-streams-apache-kafka.adoc#toolsimage[Install the tools image on Developer Sandbox]
+* xref:03-connect-streams-apache-kafka.adoc#connectopenshiftstreams[Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project]
+* xref:03-connect-streams-apache-kafka.adoc#inspectkafkadetails[Inspect the Kafka connection details]

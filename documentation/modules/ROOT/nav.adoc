@@ -12,3 +12,8 @@
 ** xref:02-using-kcat.adoc#kcatconnect[Configuring kcat to connect to a Kafka instance]
 ** xref:02-using-kcat.adoc#kcatproduce[Producing messages in kcat]
 ** xref:02-using-kcat.adoc#kcatconsume[Consuming messages in kcat]
+
+* xref:03-connect-streams-apache-kafka.adoc[3. Connecting OpenShift Streams for Apache Kafka]
+** xref:03-connect-streams-apache-kafka.adoc#toolsimage[Install the tools image on Developer Sandbox]
+** xref:03-connect-streams-apache-kafka.adoc#connectopenshiftstreams[Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project]
+** xref:03-connect-streams-apache-kafka.adoc#inspectkafkadetails[Inspect the Kafka connection details]
