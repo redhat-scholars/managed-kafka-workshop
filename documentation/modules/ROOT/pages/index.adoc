@@ -18,6 +18,7 @@ In this workshop you will:
 * Use the Red Hat OpenShift Application Services (RHOAS) Operator and CLI to connect the OpenShift Streams for Apache Kafka to an OpenShift cluster.
 * Bind a Quarkus application to OpenShift Streams for Apache Kafka using the Red Hat OpenShift Application Services CLI.
 
+This workshop uses the link:https://developers.redhat.com/developer-sandbox[Developer Sandbox for Red Hat OpenShift], which provides you with a private OpenShift environment in a shared, multi-tenant OpenShift cluster that is pre-configured with a set of developer tools. This also means you won't have to install anything on your workstation in order to run this workshop.
 
 [.tiles.browse]
 == Browse modules
@@ -31,4 +32,10 @@ In this workshop you will:
 * xref:01-getting-started.adoc#serviceaccountpermissions[Set Permissions for a Service Account]
 * xref:01-getting-started.adoc#topic[Create a Kafka Topic]
 
-
+[.tile]
+.xref:02-using-kcat.adoc[Using kcat with Kafka instances in Streams for Apache Kafka]
+* xref:02-using-kcat.adoc#devsandboxaccess[Get access to the Developer Sandbox]
+* xref:02-using-kcat.adoc#toolsimage[Install the tools image on Developer Sandbox]
+* xref:02-using-kcat.adoc#kcatconnect[Configuring kcat to connect to a Kafka instance]
+* xref:02-using-kcat.adoc#kcatproduce[Producing messages in kcat]
+* xref:02-using-kcat.adoc#kcatconsume[Consuming messages in kcat]

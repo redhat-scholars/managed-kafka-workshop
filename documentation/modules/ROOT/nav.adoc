@@ -5,3 +5,10 @@
 ** xref:01-getting-started.adoc#serviceaccount[Create a Service Account]
 ** xref:01-getting-started.adoc#serviceaccountpermissions[Set Permissions for a Service Account]
 ** xref:01-getting-started.adoc#topic[Create a Kafka Topic]
+
+* xref:02-using-kcat.adoc[2. Using kcat with Kafka instances in OpenShift Streams for Apache Kafka]
+** xref:02-using-kcat.adoc#devsandboxaccess[Get access to the Developer Sandbox]
+** xref:02-using-kcat.adoc#toolsimage[Install the tools image on Developer Sandbox]
+** xref:02-using-kcat.adoc#kcatconnect[Configuring kcat to connect to a Kafka instance]
+** xref:02-using-kcat.adoc#kcatproduce[Producing messages in kcat]
+** xref:02-using-kcat.adoc#kcatconsume[Consuming messages in kcat]
