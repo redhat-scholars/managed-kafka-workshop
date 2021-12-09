@@ -140,7 +140,7 @@ To connect your Kafka instance to your project, execute the following command in
 rhoas cluster connect
 ----
 
-You are asked to select the type of service you want to connect. Select *kafka*.
+You are asked to select the type of service you want to connect. Select *kafka* and press `enter`.
 
 [.console-output]
 [source,text]
@@ -150,7 +150,7 @@ You are asked to select the type of service you want to connect. Select *kafka*.
   service-registry
 ----
 
-You are asked to select the Kafka instance you want to connect. Since you only have a single OpenShift Streams for Apache Kafka instance in, simply press *Enter* to continue.
+You are asked to select the Kafka instance you want to connect. Since you only have a single OpenShift Streams for Apache Kafka instance in, simply press `enter` to continue.
 
 [.console-output]
 [source,text]
@@ -160,7 +160,7 @@ You are asked to select the Kafka instance you want to connect. Since you only h
 > my-kafka-instance
 ----
 
-The CLI will print the *Connection Details* and asks you to confirm. Type `y` and press *Enter* to continue.
+The CLI will print the *Connection Details* and asks you to confirm. Type `y` and press `enter` to continue.
 
 [.console-output]
 [source,text]
@@ -180,7 +180,7 @@ Service Account Secret:         rh-cloud-services-service-account
 ? Do you want to continue? (y/N) 
 ----
 
-You will be asked to provide a token, which again can be retrieved from link:https://console.redhat.com/openshift/token[console.redhat.com/openshift/token]. Navigate to this URL again, copy the token to your clipboard, and copy it into your terminal. Press *Enter* to continue. 
+You will be asked to provide a token, which again can be retrieved from link:https://console.redhat.com/openshift/token[console.redhat.com/openshift/token]. Navigate to this URL again, copy the token to your clipboard, and copy it into your terminal. Press `enter` to continue. 
 
 You should see output similar to this:
 
