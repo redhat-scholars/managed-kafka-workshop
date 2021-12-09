@@ -1,5 +1,5 @@
 name: rhosak-workshop
-title: Red Hat Streams for Apache Kafka Workshop
+title: Red Hat OpenShift Streams for Apache Kafka Workshop
 version: main
 nav:
   - modules/ROOT/nav.adoc
