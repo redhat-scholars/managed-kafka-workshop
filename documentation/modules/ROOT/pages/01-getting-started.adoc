@@ -2,12 +2,6 @@
 
 As a developer of applications and services, you can use OpenShift Streams for Apache Kafka to create and set up Kafka instances and connect your applications and services to these instances. Streams for Apache Kafka is a managed cloud service that enables you to add Kafka data-streaming functionality in your applications without having to install, configure, run, and maintain your own Kafka clusters.
 
-[#prerequisites]
-== Prerequisite CLI tools
-
-The following CLI tools are required for running the exercises in this tutorial. 
-Please have them installed and configured before you get started with any of the tutorial chapters.
-
 [#redhataccount]
 == Create a Red Hat account
 

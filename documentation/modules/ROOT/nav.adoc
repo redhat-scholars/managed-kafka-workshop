@@ -1,5 +1,4 @@
 * xref:01-getting-started.adoc[1. Getting Started with OpenShift Streams for Apache Kafka]
-** xref:01-getting-started.adoc#prerequisite[Prerequisites]
 ** xref:01-getting-started.adoc#redhataccount[Create a Red Hat Account]
 ** xref:01-getting-started.adoc#kafka[Provision a Kafka instance]
 ** xref:01-getting-started.adoc#serviceaccount[Create a Service Account]
