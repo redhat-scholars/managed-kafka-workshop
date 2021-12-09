@@ -172,3 +172,5 @@ Third message
 ----
 
 Close the kcat consumer by entering `Ctrl+C`.
+
+You have successfully used kcat to connect to a Kafka instance on OpenShift Streams for Apache Kafka and produce and consume messages from a topic.    

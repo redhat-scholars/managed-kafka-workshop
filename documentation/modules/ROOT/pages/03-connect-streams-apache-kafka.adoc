@@ -262,3 +262,5 @@ The output of the previous command contains the details of your KafkaConnection.
 The KafkaConnection contains more information besides the Bootstrap Server Host. Try to find the *Sasl Mechanism* and the *Security Protocol*.
 
 Finally the KafkaConnection has a reference to *Service Account Secret* that contains the *Client ID* and *Client Secret* needed to connect to the service. Try to find that configuration in your KafkaConnection.
+
+You have successfully connected your OpenShift Streams for Apache Kafka service to your OpenShift cluster using the Red Hat OpenShift Application Services (RHOAS) Operator and CLI. You are now ready to connect your applications to the Kafka instance using Service Binding.
