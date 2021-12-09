@@ -45,3 +45,10 @@ This workshop uses the link:https://developers.redhat.com/developer-sandbox[Deve
 * xref:03-connect-streams-apache-kafka.adoc#toolsimage[Install the tools image on Developer Sandbox]
 * xref:03-connect-streams-apache-kafka.adoc#connectopenshiftstreams[Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project]
 * xref:03-connect-streams-apache-kafka.adoc#inspectkafkadetails[Inspect the Kafka connection details]
+
+[.tile]
+.xref:04-bind-quarkus-application.adoc[4. Binding a Quarkus application to OpenShift Streams for Apache Kafka]
+* xref:04-bind-quarkus-application.adoc#deployquarkusapplication[Deploying a Quarkus application]
+* xref:04-bind-quarkus-application.adoc#createkafkatopic[Creating a Kafka topic for your Quarkus application]
+* xref:04-bind-quarkus-application.adoc#toolsimage[Install the tools image on Developer Sandbox]
+* xref:04-bind-quarkus-application.adoc#bindquarkusapp[Binding your Quarkus application to Streams for Apache Kafka]
