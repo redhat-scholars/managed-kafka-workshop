@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Connecting OpenShift Streams for Apache Kafka :: Red Hat OpenShift Streams for Apache Kafka Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhosak-workshop/rhosak-workshop/main/03-connect-streams-apache-kafka.html">
+    <link rel="prev" href="02-using-kcat.html">
+    <link rel="next" href="04-bind-quarkus-application.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhosak-workshop">Red Hat OpenShift Streams for Apache Kafka Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhosak-workshop" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-getting-started.html">1. Getting Started with OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#redhataccount">Create a Red Hat Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#kafka">Provision a Kafka instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#serviceaccount">Create a Service Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#serviceaccountpermissions">Set Permissions for a Service Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#topic">Create a Kafka Topic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-using-kcat.html">2. Using kcat with Kafka instances in OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#devsandboxaccess">Get access to the Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatconnect">Configuring kcat to connect to a Kafka instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatproduce">Producing messages in kcat</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatconsume">Consuming messages in kcat</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html">3. Connecting OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#connectopenshiftstreams">Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#inspectkafkadetails">Inspect the Kafka connection details</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-bind-quarkus-application.html">4. Binding a Quarkus application to OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#deployquarkusapplication">Deploying a Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#createkafkatopic">Creating a Kafka topic for your Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#bindquarkusapp">Binding your Quarkus application to Streams for Apache Kafka</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Red Hat OpenShift Streams for Apache Kafka Workshop</a></li>
+    <li><a href="03-connect-streams-apache-kafka.html">3. Connecting OpenShift Streams for Apache Kafka</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhosak-workshop/edit/main/documentation/modules/ROOT/pages/03-connect-streams-apache-kafka.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Connecting OpenShift Streams for Apache Kafka</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a developer, you can connect your OpenShift Streams for Apache Kafka cloud service to your OpenShift cluster using the Red Hat OpenShift Application Services (RHOAS) Operator and CLI.</p>
+</div>
+<div class="paragraph">
+<p>The Red Hat OpenShift Application Services operator allows you to represent Red Hat Cloud Services as first class citizens in your OpenShift environment. This enables you to work and integrate with these services using standard OpenShift/Kubernetes features and APIs. The Red Hat OpenShift Application Services operator is installed and available in your sandbox OpenShift Environment.</p>
+</div>
+<div class="paragraph">
+<p>To connect Red Hat OpenShift Application Services to your OpenShift project, you can use the Red Hat OpenShift Application Services CLI. The Red Hat OpenShift Application Services CLI is installed on the tools image that you used in the previous chapter of this tutorial.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="toolsimage"><a class="anchor" href="#toolsimage"></a>Install the tools image on Developer Sandbox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You installed the tools image on the Developer Sandbox as part of the previous chapter of this tutorial. If you skipped the previous chapter, refer to the <a href="02-using-kcat.html#toolsimage" class="page">Install the tools image on Developer Sandbox</a> section for instructions.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To check whether you can access the Red Hat OpenShift Application Services CLI on the tools image, enter the following command in a terminal inside the pod:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rhoas</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should print the Red Hat OpenShift Application Services CLI help text.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Manage your application services directly from the command line.
+
+Usage:
+  rhoas [command]
+
+Examples:
+# authenticate securely through your web browser
+$ rhoas login
+
+# create a Kafka instance
+$ rhoas kafka create --name my-kafka-instance
+
+# create a service account and save credentials to a JSON file
+$ rhoas service-account create -o json
+
+# connect your Kubernetes/OpenShift cluster to a service
+$ rhoas cluster connect
+
+Available Commands:
+  cluster          View and perform operations on your Kubernetes or OpenShift cluster
+  completion       Outputs command completion for the given shell (bash, zsh, or fish)
+  help             Help about any command
+  kafka            Create, view, use, and manage your Kafka instances
+  login            Log in to RHOAS
+  logout           Log out from RHOAS
+  service-account  Create, list, describe, delete and update service accounts
+  service-registry [beta] Service Registry commands
+  status           View the status of all currently used services
+  whoami           Print current username
+
+Flags:
+  -h, --help      Show help for a command
+  -v, --verbose   Enable verbose mode
+      --version   Show rhoas version
+
+Use "rhoas [command] --help" for more information about a command.</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can also install the Red Hat OpenShift Application Services CLI on your local machine. You can download the CLI from the <a href="https://github.com/redhat-developer/app-services-cli/releases/latest">Red Hat OpenShift Application Services CLI releases</a> page on GitHub.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="connectopenshiftstreams"><a class="anchor" href="#connectopenshiftstreams"></a>Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the tools pod in place, you can connect your Red Hat OpenShift Streams for Apache Kafka instance to your OpenShift project.</p>
+</div>
+<div class="paragraph">
+<p>You will use the <code>rhoas</code> CLI to connect your Kafka instance to your OpenShift project. The <code>rhoas</code> CLI uses a browser-based login flow by default (meaning, when you execute <code>rhoas login</code> it will start a sign-in flow in your web browser). Since your terminal in OpenShift does not have access to a browser, you need to login using a token.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to <a href="https://console.redhat.com/openshift/token">console.redhat.com/openshift/token</a>. Click the <strong>Load Token</strong> button and copy the token to your clipboard using the <strong>Copy to clipboard</strong> button.</p>
+</li>
+<li>
+<p>On the command line in the terminal of the tools pod, execute the <code>rhoas login</code> command, replacing {token} with the token you&#8217;ve just copied to your clipboard:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rhoas login --token={token}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see a response saying:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">✔️  You are now logged in as "{username}"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>List your Kafka instances by executing the following command:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rhoas kafka list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see the Streams for Apache Kafka instance that has been provisioned for you.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">  ID                     NAME                OWNER        STATUS   CLOUD PROVIDER   REGION
+ ---------------------- ------------------- ------------ -------- ---------------- -----------
+  c6oct2nc5d82if8pscu0   my-kafka-instance   {username}   ready    aws              eu-west-1</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>rhoas</code> CLI uses the OpenShift <code>oc</code> CLI to determine the OpenShift instance and project that the Streams for Apache Kafka instance should be connected to. Let&#8217;s verify that your <code>oc</code> client is properly connected to your OpenShift project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the command line in the terminal of the tools pod, first login the <code>oc</code> client to your OpenShift instance. To do this:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click on your username in the top-right corner of the OpenShift console and click <strong>Copy login command</strong>.</p>
+</li>
+<li>
+<p>A new tab opens in your browser with the OpenShift Developer Sandbox login screen. Click <strong>DevSandbox</strong> to log in.</p>
+</li>
+<li>
+<p>Click on <strong>Display Token</strong>.</p>
+</li>
+<li>
+<p>Copy the <code>oc login</code> command.</p>
+</li>
+<li>
+<p>Go to the terminal, and execute the command you just copied.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The output of the login command will state <strong>Using project {project-name}</strong>. This should be set to <code>{username}-dev</code>. If this is not the case, in your terminal, point your oc client to the correct OpenShift project (replace {username} with your username in the Developer Sandbox OpenShift environment):</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc project {username}-dev.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To connect your Kafka instance to your project, execute the following command in the terminal:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rhoas cluster connect</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are asked to select the type of service you want to connect. Select <strong>kafka</strong> and press <code>enter</code>.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">? Select type of service  [Use arrows to move, type to filter]
+&gt; kafka
+  service-registry</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are asked to select the Kafka instance you want to connect. Since you only have a single OpenShift Streams for Apache Kafka instance in, simply press <code>Enter`</code> to continue.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">? Select type of service kafka
+? Select Kafka instance:  [Use arrows to move, type to filter]
+&gt; my-kafka-instance</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The CLI will print the <strong>Connection Details</strong> and asks you to confirm. Type <code>y</code> and press <code>enter</code> to continue.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">? Select type of service kafka
+? Select Kafka instance: my-kafka-instance
+This command will link your cluster with Cloud Services by creating custom resources and secrets.
+In case of problems please execute "rhoas cluster status" to check if your cluster is properly configured
+
+Connection Details:
+
+Service Type:                   kafka
+Service Name:                   my-kafka-instance
+Kubernetes Namespace:           rh-bu-cloudservices-tmm-dev
+Service Account Secret:         rh-cloud-services-service-account
+
+? Do you want to continue? (y/N)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You will be asked to provide a token, which again can be retrieved from <a href="https://console.redhat.com/openshift/token">console.redhat.com/openshift/token</a>. Navigate to this URL again, copy the token to your clipboard, and copy it into your terminal. Press <code>enter</code> to continue.</p>
+<div class="paragraph">
+<p>You should see output similar to this:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">✔️  Token Secret "rh-cloud-services-accesstoken" created successfully
+✔️  Service Account Secret "rh-cloud-services-service-account" created successfully
+
+Client ID:     srvc-acct-7903447d-3aa7-4e14-ad6b-11dfa5d8b321
+
+Make a copy of the client ID to store in a safe place. Credentials won't appear again after closing the terminal.
+
+You will need to assign permissions to service account in order to use it.
+For example for Kafka service you should execute the following command to grant access to the service account:
+
+  $ rhoas kafka acl grant-access --producer --consumer --service-account srvc-acct-7903447d-3aa7-4e14-ad6b-11dfa5d8b321 --topic all --group all
+
+✔️  kafka resource "my-kafka-instance" has been created
+Waiting for status from kafka resource.
+Created kafka can be already injected to your application.
+
+To bind you need to have Service Binding Operator installed:
+https://github.com/redhat-developer/service-binding-operator
+
+You can bind kafka to your application by executing "rhoas cluster bind"
+or directly in the OpenShift Console topology view.
+
+✔️  Connection to service successful.</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>To verify that the connection has been successfully created, execute the following oc command:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get KafkaConnection</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should return a <strong>KafkaConnection</strong> with the name of your Kafka instance.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">NAME                AGE
+my-kafka-instance   3m42s</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inspectkafkadetails"><a class="anchor" href="#inspectkafkadetails"></a>Inspect the Kafka connection details</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With your Streams for Apache Kafka instance bound to your OpenShift project, you can now connect your application to it.</p>
+</div>
+<div class="paragraph">
+<p>This can be done in different ways.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can inspect the connection details of your Kafka instance and configure your application to connect to it.</p>
+</li>
+<li>
+<p>You can use OpenShift Service Binding to bind your application to the service and have the connection details and credentials automatically injected into your application.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In your terminal, execute the following command to get the name of the <strong>KafkaConnection</strong> resource you&#8217;ve created in the previous task:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get KafkaConnection</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will list the KafkaConnection resources in your project.</p>
+</div>
+</li>
+<li>
+<p>Execute the following command to retrieve the details of your KafkaConnection. Replace the KafkaConnection name with the relevant name as required.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc describe KafkaConnection my-kafka-instance</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The output of the previous command contains the details of your KafkaConnection. Try to find the <strong>Bootstrap Server Host</strong> setting of your KafkaConnection.</p>
+</li>
+<li>
+<p>The KafkaConnection contains more information besides the Bootstrap Server Host. Try to find the <strong>Sasl Mechanism</strong> and the <strong>Security Protocol</strong>.</p>
+</li>
+<li>
+<p>Finally the KafkaConnection has a reference to <strong>Service Account Secret</strong> that contains the <strong>Client ID</strong> and <strong>Client Secret</strong> needed to connect to the service. Try to find that configuration in your KafkaConnection.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You have successfully connected your OpenShift Streams for Apache Kafka service to your OpenShift cluster using the Red Hat OpenShift Application Services (RHOAS) Operator and CLI. You are now ready to connect your applications to the Kafka instance using Service Binding.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="02-using-kcat.html">2. Using kcat with Kafka instances in OpenShift Streams for Apache Kafka</a></span>
+  <span class="next"><a href="04-bind-quarkus-application.html">4. Binding a Quarkus application to OpenShift Streams for Apache Kafka</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

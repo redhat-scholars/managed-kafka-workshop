@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OpenShift Streams for Apache Kafka Workshop :: Red Hat OpenShift Streams for Apache Kafka Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/rhosak-workshop/rhosak-workshop/main/index.html">
+    <link rel="next" href="01-getting-started.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/rhosak-workshop">Red Hat OpenShift Streams for Apache Kafka Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="rhosak-workshop" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-getting-started.html">1. Getting Started with OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#redhataccount">Create a Red Hat Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#kafka">Provision a Kafka instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#serviceaccount">Create a Service Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#serviceaccountpermissions">Set Permissions for a Service Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#topic">Create a Kafka Topic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-using-kcat.html">2. Using kcat with Kafka instances in OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#devsandboxaccess">Get access to the Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatconnect">Configuring kcat to connect to a Kafka instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatproduce">Producing messages in kcat</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatconsume">Consuming messages in kcat</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html">3. Connecting OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html#connectopenshiftstreams">Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html#inspectkafkadetails">Inspect the Kafka connection details</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-bind-quarkus-application.html">4. Binding a Quarkus application to OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#deployquarkusapplication">Deploying a Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#createkafkatopic">Creating a Kafka topic for your Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-bind-quarkus-application.html#bindquarkusapp">Binding your Quarkus application to Streams for Apache Kafka</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Red Hat OpenShift Streams for Apache Kafka Workshop</a></li>
+    <li><a href="index.html">OpenShift Streams for Apache Kafka Workshop</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/rhosak-workshop/edit/main/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">OpenShift Streams for Apache Kafka Workshop</h1>
+<div class="sect1 text-center strong">
+<h2>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Welcome to the OpenShift Streams for Apache Kafka workshop.</p>
+</div>
+<div class="paragraph">
+<p>As a developer of applications and services, you can use OpenShift Streams for Apache Kafka to create and set up Kafka instances and connect your applications and services to these instances. Streams for Apache Kafka is a managed cloud service that enables you to add Kafka data-streaming functionality in your applications without having to install, configure, run, and maintain your own Kafka clusters.</p>
+</div>
+<div class="paragraph">
+<p>In this workshop you will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create and inspect a Kafka instance using OpenShift Streams for Apache Kafka.</p>
+</li>
+<li>
+<p>Create a service account to connect to the Kafka instance.</p>
+</li>
+<li>
+<p>Create a topic in the kafka instance.</p>
+</li>
+<li>
+<p>Use <a href="https://github.com/edenhill/kcat">kcat</a> to produce and consume messages for the Kafka instance.</p>
+</li>
+<li>
+<p>Use the Red Hat OpenShift Application Services (RHOAS) Operator and CLI to connect the OpenShift Streams for Apache Kafka to an OpenShift cluster.</p>
+</li>
+<li>
+<p>Bind a Quarkus application to OpenShift Streams for Apache Kafka using the Red Hat OpenShift Application Services CLI.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This workshop uses the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox for Red Hat OpenShift</a>, which provides you with a private OpenShift environment in a shared, multi-tenant OpenShift cluster that is pre-configured with a set of developer tools. This also means you won&#8217;t have to install anything on your workstation in order to run this workshop.</p>
+</div>
+</div>
+</div>
+<div class="sect1 tiles browse">
+<h2>Browse modules</h2>
+<div class="sectionbody">
+<div class="ulist tile">
+<div class="title"><a href="01-getting-started.html" class="page">1. Getting Started</a></div>
+<ul>
+<li>
+<p><a href="01-getting-started.html#redhataccount" class="page">Create a Red Hat Account</a></p>
+</li>
+<li>
+<p><a href="01-getting-started.html#kafka" class="page">Provision a Kafka instance</a></p>
+</li>
+<li>
+<p><a href="01-getting-started.html#serviceaccount" class="page">Create a Service Account</a></p>
+</li>
+<li>
+<p><a href="01-getting-started.html#serviceaccountpermissions" class="page">Set Permissions for a Service Account</a></p>
+</li>
+<li>
+<p><a href="01-getting-started.html#topic" class="page">Create a Kafka Topic</a></p>
+</li>
+</ul>
+</div>
+<div class="ulist tile">
+<div class="title"><a href="02-using-kcat.html" class="page">2. Using kcat with Kafka instances in Streams for Apache Kafka</a></div>
+<ul>
+<li>
+<p><a href="02-using-kcat.html#devsandboxaccess" class="page">Get access to the Developer Sandbox</a></p>
+</li>
+<li>
+<p><a href="02-using-kcat.html#toolsimage" class="page">Install the tools image on Developer Sandbox</a></p>
+</li>
+<li>
+<p><a href="02-using-kcat.html#kcatconnect" class="page">Configuring kcat to connect to a Kafka instance</a></p>
+</li>
+<li>
+<p><a href="02-using-kcat.html#kcatproduce" class="page">Producing messages in kcat</a></p>
+</li>
+<li>
+<p><a href="02-using-kcat.html#kcatconsume" class="page">Consuming messages in kcat</a></p>
+</li>
+</ul>
+</div>
+<div class="ulist tile">
+<div class="title"><a href="03-connect-streams-apache-kafka.html" class="page">3. Connecting OpenShift Streams for Apache Kafka</a></div>
+<ul>
+<li>
+<p><a href="03-connect-streams-apache-kafka.html#toolsimage" class="page">Install the tools image on Developer Sandbox</a></p>
+</li>
+<li>
+<p><a href="03-connect-streams-apache-kafka.html#connectopenshiftstreams" class="page">Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project</a></p>
+</li>
+<li>
+<p><a href="03-connect-streams-apache-kafka.html#inspectkafkadetails" class="page">Inspect the Kafka connection details</a></p>
+</li>
+</ul>
+</div>
+<div class="ulist tile">
+<div class="title"><a href="04-bind-quarkus-application.html" class="page">4. Binding a Quarkus application to OpenShift Streams for Apache Kafka</a></div>
+<ul>
+<li>
+<p><a href="04-bind-quarkus-application.html#deployquarkusapplication" class="page">Deploying a Quarkus application</a></p>
+</li>
+<li>
+<p><a href="04-bind-quarkus-application.html#createkafkatopic" class="page">Creating a Kafka topic for your Quarkus application</a></p>
+</li>
+<li>
+<p><a href="04-bind-quarkus-application.html#toolsimage" class="page">Install the tools image on Developer Sandbox</a></p>
+</li>
+<li>
+<p><a href="04-bind-quarkus-application.html#bindquarkusapp" class="page">Binding your Quarkus application to Streams for Apache Kafka</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="next"><a href="01-getting-started.html">1. Getting Started with OpenShift Streams for Apache Kafka</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
