@@ -3,8 +3,8 @@ runtime:
 
 site:
   title: Red Hat OpenShift Streams for Apache Kafka Workshop
-  url: https://redhat-scholars.github.io/rhosak-workshop
-  start_page: rhosak-workshop::index.adoc
+  url: https://redhat-scholars.github.io/managed-kafka-workshop
+  start_page: managed-kafka-workshop::index.adoc
 
 content:
   sources:

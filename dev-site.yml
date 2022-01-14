@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: Red Hat OpenShift Streams for Apache Kafka Workshop (Dev Mode)
-  start_page: rhosak-workshop::index.adoc
+  start_page: managed-kafka-workshop::index.adoc
 
 content:
   sources:
