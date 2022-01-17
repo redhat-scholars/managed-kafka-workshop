@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Binding a Quarkus application to OpenShift Streams for Apache Kafka :: Red Hat OpenShift Streams for Apache Kafka Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/managed-kafka-workshop/managed-kafka-workshop/main/04-bind-quarkus-application.html">
+    <link rel="prev" href="03-connect-streams-apache-kafka.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/managed-kafka-workshop">Red Hat OpenShift Streams for Apache Kafka Workshop</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="managed-kafka-workshop" data-version="main">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-getting-started.html">1. Getting Started with OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#redhataccount">Create a Red Hat Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#kafka">Provision a Kafka instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#serviceaccount">Create a Service Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#serviceaccountpermissions">Set Permissions for a Service Account</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html#topic">Create a Kafka Topic</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-using-kcat.html">2. Using kcat with Kafka instances in OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#devsandboxaccess">Get access to the Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatconnect">Configuring kcat to connect to a Kafka instance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatproduce">Producing messages in kcat</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-using-kcat.html#kcatconsume">Consuming messages in kcat</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html">3. Connecting OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html#connectopenshiftstreams">Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-connect-streams-apache-kafka.html#inspectkafkadetails">Inspect the Kafka connection details</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-bind-quarkus-application.html">4. Binding a Quarkus application to OpenShift Streams for Apache Kafka</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#deployquarkusapplication">Deploying a Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#createkafkatopic">Creating a Kafka topic for your Quarkus application</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#toolsimage">Install the tools image on Developer Sandbox</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#bindquarkusapp">Binding your Quarkus application to Streams for Apache Kafka</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Red Hat OpenShift Streams for Apache Kafka Workshop</a></li>
+    <li><a href="04-bind-quarkus-application.html">4. Binding a Quarkus application to OpenShift Streams for Apache Kafka</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/managed-kafka-workshop/edit/main/documentation/modules/ROOT/pages/04-bind-quarkus-application.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Binding a Quarkus application to OpenShift Streams for Apache Kafka</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a developer of applications and services, you can connect Quarkus applications to Kafka instances in OpenShift Streams for Apache Kafka.</p>
+</div>
+<div class="paragraph">
+<p>Quarkus is a Kubernetes-native Java framework made for Java virtual machines (JVMs) and native compilation, and optimized for serverless, cloud, and Kubernetes environments. Quarkus is designed to work with popular Java standards, frameworks, and libraries like Eclipse MicroProfile and Spring, as well as Apache Kafka, RESTEasy (JAX-RS), Hibernate ORM (JPA), Infinispan, Camel, and many more.</p>
+</div>
+<div class="paragraph">
+<p>You can bind a Quarkus application to your Kafka instance using <em>Kubernetes Service Binding</em>. Service Binding allows you to communicate connection details and secrets to an application to allow it to bind to a service. In this context, a service can be anything: a Kafka instance, a NoSQL database, etc. By using Service Binding, we no longer need to configure connection details (host, port), authentication mechanisms (SASL, OAuth) and credentials (username/password, client id/client secret) in an application. Instead, Service Binding injects these variables into your application container (as files or environment variables) for your application to consume. The Quarkus Kubernetes Service Binding extension enables Quarkus applications to automatically pickup these variables, injected as files, from the container&#8217;s filesystem, removing the need to specify any configuration settings in the application resources (e.g configuration files) themselves.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deployquarkusapplication"><a class="anchor" href="#deployquarkusapplication"></a>Deploying a Quarkus application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As the first task, you will deploy a Quarkus application that produces to, and consumes from, a Kafka instance. It&#8217;s an adapted version of the standard Quarkus Kafka Quick Start, to which the Quarkus Kubernetes Service Binding plugin has been added.</p>
+</div>
+<div class="paragraph">
+<p>The Quick Start is a PriceConverter application that generates random prices (integers) and sends them to a Kafka topic. Another component of the application consumes these prices, applies a conversion and makes them available via a REST service endpoint. The output can be inspected on a simple webpage.</p>
+</div>
+<div class="paragraph">
+<p>The source code of the Quarkus application can be found in <a href="https://github.com/redhat-developer/app-services-guides/tree/main/code-examples/quarkus-kafka-quickstart">this GitHub repo</a>.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ve pre-build the container image with the Quarkus application so that you can deploy it in your OpenShift project on the Developer Sandbox.</p>
+</div>
+<div class="paragraph">
+<p>To deploy the Quarkus application:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you are in the <em>Developer Perspective</em> of your sandbox environment.</p>
+</li>
+<li>
+<p>In the navigation menu on the left, click <strong>+Add</strong>.</p>
+</li>
+<li>
+<p>Make sure that your OpenShift Project, which you can see at the top of the <strong>Add</strong> window, is set to <code>{username}-dev</code> (where <code>{username}</code> is your username in the sandbox OpenShift environment).</p>
+</li>
+<li>
+<p>Click on the <strong>Container Images</strong> card.</p>
+</li>
+<li>
+<p>In the Image name from external registry field, enter:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quay.io/rhoas/rhoas-quarkus-kafka-quickstart</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the <strong>Runtime icon</strong> field, select <code>quarkus</code>.</p>
+</li>
+<li>
+<p>Under the <strong>Advanced options</strong>, click the <strong>Show advanced Routing options</strong> link to show the advanced configuration options.<br>
+Check the <strong>Secure Route</strong> checkbox.<br>
+Set the <strong>TLS termination</strong> field to <code>Edge</code>.<br>
+Set the <strong>Insecure traffic</strong> field to <code>Redirect</code>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devsandbox-secure-route.png" alt="devsandbox secure route">
+</div>
+</div>
+</li>
+<li>
+<p>Leave the other fields set to their default values and click the <strong>Create</strong> button. This will create a new OpenShift Deployment for your Quarkus application.</p>
+</li>
+<li>
+<p>You will see the deployment of your Quarkus application in the <em>Topology</em> screen.<br>
+The icon of your Quarkus application should have a yellow circle around it, indicating that the application is misconfigured and failing to enter a healthy state.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devsandbox-deployment-failed.png" alt="devsandbox deployment failed">
+</div>
+</div>
+</li>
+<li>
+<p>Click on the icon of your Quarkus application. This will open a panel on the right-hand-side of your screen. Click on the <strong>Resources</strong> tab. You will see the <strong>Pods</strong> of your Deployment. Currently you only have a single pod.</p>
+</li>
+<li>
+<p>Click on the <strong>View logs</strong> link next to the pod. In the logs of your application, you will see an error stating the application is misconfigured and is missing configuration properties to be able to connect to Kafka.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Dec 09, 2021 11:23:36 AM org.jboss.threads
+INFO: JBoss Threads version %s
+Dec 09, 2021 11:23:36 AM io.quarkus.runtime.ApplicationLifecycleManager run
+ERROR: Failed to start application (with profile prod)
+java.lang.IllegalStateException: The property 'kafka.bootstrap.servers' must be set when 'quarkus.kubernetes-service-binding.enabled' has been set to 'true'
+	at io.quarkus.kafka.client.runtime.KafkaRecorder.checkBoostrapServers(KafkaRecorder.java:85)
+	at io.quarkus.deployment.steps.KafkaProcessor$checkBoostrapServers-1072202763.deploy_0(KafkaProcessor$checkBoostrapServers-1072202763.zig:67)
+	at io.quarkus.deployment.steps.KafkaProcessor$checkBoostrapServers-1072202763.deploy(KafkaProcessor$checkBoostrapServers-1072202763.zig:40)
+	at io.quarkus.runner.ApplicationImpl.doStart(ApplicationImpl.zig:524)
+	at io.quarkus.runtime.Application.start(Application.java:101)
+	at io.quarkus.runtime.ApplicationLifecycleManager.run(ApplicationLifecycleManager.java:101)
+	at io.quarkus.runtime.Quarkus.run(Quarkus.java:66)
+	at io.quarkus.runtime.Quarkus.run(Quarkus.java:42)
+	at io.quarkus.runtime.Quarkus.run(Quarkus.java:119)
+	at io.quarkus.runner.GeneratedMain.main(GeneratedMain.zig:29)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at io.quarkus.bootstrap.runner.QuarkusEntryPoint.doRun(QuarkusEntryPoint.java:48)
+	at io.quarkus.bootstrap.runner.QuarkusEntryPoint.main(QuarkusEntryPoint.java:25)</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="createkafkatopic"><a class="anchor" href="#createkafkatopic"></a>Creating a Kafka topic for your Quarkus application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Quarkus application is configured to produce to, and consume from a topic named <code>prices</code>. You therefore need to create this topic in Streams for Apache Kafka.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the <strong>Kafka Instances</strong> page of the Streams for Apache Kafka web console, click the name of the Kafka instance that you want to add a topic to.</p>
+</li>
+<li>
+<p>Select the <strong>Topics</strong> tab, click <strong>Create topic</strong>, and follow the guided steps to define the topic details. Click <strong>Next</strong> to complete each step and click <strong>Finish</strong> to complete the setup.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Topic name</strong>: <code>prices</code></p>
+</li>
+<li>
+<p><strong>Partitions</strong>: 1</p>
+</li>
+<li>
+<p><strong>Message retention</strong>: Keep the default values.</p>
+</li>
+<li>
+<p><strong>Replicas</strong>: Replicas configuration is by default configured as 3 replicas and 2 min in-sync-replicas.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>After you complete the topic setup, the new Kafka topic is listed in the topics table. Your Quarkus application can now start producing and consuming messages to and from this topic.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="toolsimage"><a class="anchor" href="#toolsimage"></a>Install the tools image on Developer Sandbox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You installed the tools image on the Developer Sandbox as part of the previous chapter of this tutorial. If you skipped the previous chapter, refer to the <a href="02-using-kcat.html#toolsimage" class="xref page">Install the tools image on Developer Sandbox</a> section for instructions.</p>
+</div>
+<div class="paragraph">
+<p>Make sure that the <code>rhoas</code> and <code>oc</code> CLI clients inside the tools image are properly configured. If you executed the tasks in the previous chapter of this tutorial this should be the case. If needed, refer to <a href="03-connect-streams-apache-kafka.html#connectopenshiftstreams" class="xref page">Connect the OpenShift Streams for Apache Kafka instance to your OpenShift project</a> for details and instructions.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You can verify that the <code>oc</code> CLI client is properly configured with the following command:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get deployment</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should return the deployment status of the Quarkus application and the tools container:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+rhoas-quarkus-kafka-quickstart   0/1     1            0           3m
+rhoas-tools                      1/1     1            1           19m</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bindquarkusapp"><a class="anchor" href="#bindquarkusapp"></a>Binding your Quarkus application to Streams for Apache Kafka</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With your Quarkus application deployed, and your Streams for Apache Kafka instance connected to your OpenShift project, you can now bind your application to your Kafka instance. This is done using the <em>Service Binding Operator</em>, which will inject the configuration values required to connect to your Kafka instance into your Quarkus application. The Quarkus application has been configured to use the <code>quarkus-kubernetes-service-binding</code> extension enabling auto-discovery of the binding files injected into the Quarkus application pod.</p>
+</div>
+<div class="paragraph">
+<p>We will create the binding using the <code>rhoas</code> CLI tool. You can also to do this directly from the OpenShift Developer Console.</p>
+</div>
+<div class="paragraph">
+<p>To create the binding, you use the <code>rhoas cluster bind</code> command, and select the application deployment that we want to bind to our Streams for Apache Kafka instance that has already been connected to our OpenShift project.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>On the command line in the terminal of the tools pod, execute the command:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rhoas cluster bind</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are asked to select the application you want to connect to. Select <strong>rhoas-quarkus-kafka-quickstart</strong> amd press <code>enter</code>.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Namespace not provided. Using rh-bu-cloudservices-tmm-dev namespace
+Looking for Deployment resources. Use --deployment-config flag to look for deployment configs
+? Please select application you want to connect with  [Use arrows to move, type to filter]
+&gt; rhoas-quarkus-kafka-quickstart
+  rhoas-tools</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are asked to select the type of service you want to connect. Select <strong>kafka</strong> and press <code>enter</code>.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Namespace not provided. Using rh-bu-cloudservices-tmm-dev namespace
+Looking for Deployment resources. Use --deployment-config flag to look for deployment configs
+? Please select application you want to connect with rhoas-quarkus-kafka-quickstart
+? Select type of service  [Use arrows to move, type to filter]
+&gt; kafka
+  service-registry</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You are asked to select the Kafka instance you want to connect. Since you only have a single Kafka instance on OpenShift Streams for Apache Kafka, simply press <code>enter</code> to continue.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Namespace not provided. Using rh-bu-cloudservices-tmm-dev namespace
+Looking for Deployment resources. Use --deployment-config flag to look for deployment configs
+? Please select application you want to connect with rhoas-quarkus-kafka-quickstart
+? Select type of service kafka
+? Select Kafka instance:  [Use arrows to move, type to filter]
+&gt; my-kafka-instance</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The CLI asks you to confirm. Type <code>y</code> and press <code>enter</code> to continue.</p>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Namespace not provided. Using rh-bu-cloudservices-tmm-dev namespace
+Looking for Deployment resources. Use --deployment-config flag to look for deployment configs
+? Please select application you want to connect with rhoas-quarkus-kafka-quickstart
+? Select type of service kafka
+? Select Kafka instance: my-kafka-instance
+Binding "my-kafka-instance" with "rhoas-quarkus-kafka-quickstart" app
+? Do you want to continue? (y/N)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The CLI produces the following output:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Using ServiceBinding Operator to perform binding
+✔️  Binding my-kafka-instance with rhoas-quarkus-kafka-quickstart app succeeded</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The binding will mount the Kafka connection configuration as files into the Quarkus application pod, from where they will be automatically picked up by the <code>quarkus-kubernetes-service-binding</code> extension.<br>
+With the binding created, your Quarkus application will now redeploy. Go back to the topology view screen by clicking on the <strong>Topology</strong> link in the navigation menu.</p>
+</li>
+<li>
+<p>Click on the <strong>Open URL</strong> icon in the upper-right of your Quarkus application icon in the Topology view. This opens a new browser tab showing the default Quarkus welcome page.</p>
+</li>
+<li>
+<p>Add the path <code>/prices.html</code> to the URL of your Quarkus application. This will open the <em>prices</em> page of your Quarkus application. The application has now been properly configured, and prices are being sent to and consumed from the Kafka topic.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devsandbox-quarkus-app.png" alt="devsandbox quarkus app">
+</div>
+</div>
+</li>
+<li>
+<p>Go back to the <strong>Topology</strong> screen, click on the Quarkus application. This will open a panel on the righ-hand-side of your screen. Click on the Resources tab. You will see the Pod of your Deployment. Click on the <strong>View logs</strong> link next to your pod. In the logs of your application, you will see that your Quarkus application has connected to Kafka.</p>
+</li>
+<li>
+<p>In the same screen, click on the <strong>Details</strong> tab. Scroll down until you see the <strong>Volumes</strong> section. Note that there is a <strong>kafka-binding</strong> volume, which contains the binding files that contain the information required by your Quarkus application to connect to your Kafka instance. These files are auto-discovered and used by the <code>quarkus-kubernetes-service-binding</code> extension to automatically connect your Quarkus application to OpenShift Streams for Apache Kafka.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/devsandbox-pod-volumes.png" alt="devsandbox pod volumes">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You have succesfully connected a Quarkus application to a Kafka instance of OpenShift Streams for Apache Kafka using Servie Binding.</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="03-connect-streams-apache-kafka.html">3. Connecting OpenShift Streams for Apache Kafka</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
