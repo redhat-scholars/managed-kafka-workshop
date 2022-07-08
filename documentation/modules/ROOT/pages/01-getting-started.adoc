@@ -20,9 +20,9 @@ Be sure to select a *Personal account* type.
 
 . Go to https://console.redhat.com[console.redhat.com] and log in with your Red Hat account.
 
-. On the https://console.redhat.com[console.redhat.com] landing page, select *Application Services* from the menu on the left.
+. On the https://console.redhat.com[console.redhat.com] landing page, select *Application and Data Services* from the menu on the left.
 
-. On the Application Services landing page, select *Streams for Apache Kafka → Kafka Instances*.
+. On the Application and Data Services landing page, select *Streams for Apache Kafka → Kafka Instances*.
 +
 image::rhosak-kafka-instances.png[]
 
@@ -32,7 +32,7 @@ image::rhosak-kafka-instances.png[]
 +
 image::rhosak-kafka-instance-ready.png[]
 
-. When the instance _Status_ is _Ready_, you can start using the Kafka instance. You can use the options icon (three vertical dots) to view, connect to, or delete the instance as needed.
+. When the instance _Status_ is `Ready`, you can start using the Kafka instance. You can use the options icon (three vertical dots) to view, connect to, or delete the instance as needed.
 
 [NOTE]
 ====
@@ -68,19 +68,24 @@ You’ll use the service account information that you saved to configure your ap
 
 After you create a service account to connect to a Kafka instance, you must also set the appropriate level of access for that new account in the Access Control List (ACL) of the Kafka instance. Streams for Apache Kafka uses ACLs provided by Kafka that enable you to manage how other user accounts and service accounts are permitted to interact with the Kafka resources that you create.
 
+[NOTE]
+====
+For this workshop, you will set permissions for all accounts at once. The reason behind this is that the Service Binding functionality we are going to use later in the workshop to bind applications to the Kafka instance will create a new service account. By using wildcard permissions, you ensure that this service account has the required permissions to connect to the Kafka instance. 
+====
+
 . On the *Kafka Instances* page, click the name of the Kafka instance you previously created.
 
 . Click the *Access* tab to view the current ACL for this instance.
 +
 image::rhosak-default-access.png[]
 
-. Click *Manage access*, use the *Account* drop-down menu to select the service account that you previously created, and click *Next*.
+. Click *Manage access*, use the *Account* drop-down menu to select to select *All accounts*, and click *Next*.
 
-. Under *Assign Permissions*, use the drop-down menus to set the permissions shown in the following table for this service account. Click *Add* to add each new resource permission.
+. Select the *Consume from a topic* and *Produce to a topic* from the *Task-based permission* possibilities. Set the topic and consumer group names to `is` and `*`.
 +
-These permissions enable applications associated with the service account to create and delete topics in the instance, to produce and consume messages in any topic in the instance, and to use any consumer group and any producer.
+These permissions enable applications associated with any service account to create topics in the instance, to produce and consume messages in any topic in the instance, and to use any consumer group.
 +
-.Example ACL permissions for a new service account
+.Example ACL permissions for all accounts
 [cols="25%,25%,25%,25%"]
 |===
 h|Resource type
@@ -91,22 +96,17 @@ h|Operation
 |`Topic`
 |`Is` = `*`
 |`Allow`
-|`All`
+|`Read`,`Write`,`Create`,`Describe`
 
 |`Consumer group`
 |`Is` = `*`
 |`Allow`
 |`Read`
-
-|`Transactional ID`
-|`Is` = `*`
-|`Allow`
-|`All`
 |===
 +
+Click *Save*.
++
 image::rhosak-access-serviceaccount.png[]
-
-. After you add these permissions for the service account, click *Save* to finish.
 
 [#topic]
 == Create a Kafka Topic in OpenShift Streams for Apache Kafka
@@ -124,6 +124,6 @@ image:rhosak-create-topic.png[]
 +
 NOTE: You can increase the number of partitions later, but you cannot decrease them.
 * *Message retention*: Set the message retention time and size to the relevant value and increment. The default retention time is set to `A week` and the retention size to `Unlimited`. Message retention time is the amount of time that messages are retained in a topic before they are deleted or compacted, depending on the cleanup policy. Retention size is the maximum total size of all log segments in a partition before they are deleted or compacted.
-* *Replicas*: For this release of Streams for Apache Kafka, the replicas are preconfigured. The number of partition replicas for the topic is set to `3` and the minimum number of follower replicas that must be in sync with a partition leader is set to `2`. Replicas are copies of partitions in a topic. Partition replicas are distributed over multiple brokers in the cluster to ensure topic availability if a broker fails. When a follower replica is in sync with a partition leader, the follower replica can become the new partition leader if needed.
+* *Replicas*: For this release of Streams for Apache Kafka, the replicas are preconfigured. On a trial Kafka instance, whichg only consists of one broker, the number of partition replicas for the topic and the minimum number of follower replicas that must be in sync with a partition leader are set to `1`. Replicas are copies of partitions in a topic. Partition replicas are distributed over multiple brokers in the cluster to ensure topic availability if a broker fails. When a follower replica is in sync with a partition leader, the follower replica can become the new partition leader if needed.
 
 After you complete the topic setup, the new Kafka topic is listed in the topics table. You can now start producing and consuming messages to and from this topic using services that you connect to this instance.
