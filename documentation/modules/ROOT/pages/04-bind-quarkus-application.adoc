@@ -214,4 +214,4 @@ image::devsandbox-quarkus-app.png[]
 +
 image::devsandbox-pod-volumes.png[]
 
-You have succesfully connected a Quarkus application to a Kafka instance of OpenShift Streams for Apache Kafka using Servie Binding.
+You have successfully connected a Quarkus application to a Kafka instance of OpenShift Streams for Apache Kafka using Service Binding.
