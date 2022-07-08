@@ -191,10 +191,10 @@
 <p>Go to <a href="https://console.redhat.com">console.redhat.com</a> and log in with your Red Hat account.</p>
 </li>
 <li>
-<p>On the <a href="https://console.redhat.com">console.redhat.com</a> landing page, select <strong>Application Services</strong> from the menu on the left.</p>
+<p>On the <a href="https://console.redhat.com">console.redhat.com</a> landing page, select <strong>Application and Data Services</strong> from the menu on the left.</p>
 </li>
 <li>
-<p>On the Application Services landing page, select <strong>Streams for Apache Kafka → Kafka Instances</strong>.</p>
+<p>On the Application and Data Services landing page, select <strong>Streams for Apache Kafka → Kafka Instances</strong>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/rhosak-kafka-instances.png" alt="rhosak kafka instances">
@@ -213,7 +213,7 @@
 </div>
 </li>
 <li>
-<p>When the instance <em>Status</em> is <em>Ready</em>, you can start using the Kafka instance. You can use the options icon (three vertical dots) to view, connect to, or delete the instance as needed.</p>
+<p>When the instance <em>Status</em> is <code>Ready</code>, you can start using the Kafka instance. You can use the options icon (three vertical dots) to view, connect to, or delete the instance as needed.</p>
 </li>
 </ol>
 </div>
@@ -288,6 +288,20 @@
 <div class="paragraph">
 <p>After you create a service account to connect to a Kafka instance, you must also set the appropriate level of access for that new account in the Access Control List (ACL) of the Kafka instance. Streams for Apache Kafka uses ACLs provided by Kafka that enable you to manage how other user accounts and service accounts are permitted to interact with the Kafka resources that you create.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For this workshop, you will set permissions for all accounts at once. The reason behind this is that the Service Binding functionality we are going to use later in the workshop to bind applications to the Kafka instance will create a new service account. By using wildcard permissions, you ensure that this service account has the required permissions to connect to the Kafka instance.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -302,15 +316,15 @@
 </div>
 </li>
 <li>
-<p>Click <strong>Manage access</strong>, use the <strong>Account</strong> drop-down menu to select the service account that you previously created, and click <strong>Next</strong>.</p>
+<p>Click <strong>Manage access</strong>, use the <strong>Account</strong> drop-down menu to select to select <strong>All accounts</strong>, and click <strong>Next</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Assign Permissions</strong>, use the drop-down menus to set the permissions shown in the following table for this service account. Click <strong>Add</strong> to add each new resource permission.</p>
+<p>Select the <strong>Consume from a topic</strong> and <strong>Produce to a topic</strong> from the <strong>Task-based permission</strong> possibilities. Set the topic and consumer group names to <code>is</code> and <code>*</code>.</p>
 <div class="paragraph">
-<p>These permissions enable applications associated with the service account to create and delete topics in the instance, to produce and consume messages in any topic in the instance, and to use any consumer group and any producer.</p>
+<p>These permissions enable applications associated with any service account to create topics in the instance, to produce and consume messages in any topic in the instance, and to use any consumer group.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Example ACL permissions for a new service account</caption>
+<caption class="title">Table 1. Example ACL permissions for all accounts</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -328,7 +342,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Topic</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Is</code> = <code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Allow</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>All</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Read</code>,<code>Write</code>,<code>Create</code>,<code>Describe</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Consumer group</code></p></td>
@@ -336,22 +350,16 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Allow</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Read</code></p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Transactional ID</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Is</code> = <code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Allow</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>All</code></p></td>
-</tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Click <strong>Save</strong>.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/rhosak-access-serviceaccount.png" alt="rhosak access serviceaccount">
 </div>
 </div>
-</li>
-<li>
-<p>After you add these permissions for the service account, click <strong>Save</strong> to finish.</p>
 </li>
 </ol>
 </div>
@@ -397,7 +405,7 @@ You can increase the number of partitions later, but you cannot decrease them.
 <p><strong>Message retention</strong>: Set the message retention time and size to the relevant value and increment. The default retention time is set to <code>A week</code> and the retention size to <code>Unlimited</code>. Message retention time is the amount of time that messages are retained in a topic before they are deleted or compacted, depending on the cleanup policy. Retention size is the maximum total size of all log segments in a partition before they are deleted or compacted.</p>
 </li>
 <li>
-<p><strong>Replicas</strong>: For this release of Streams for Apache Kafka, the replicas are preconfigured. The number of partition replicas for the topic is set to <code>3</code> and the minimum number of follower replicas that must be in sync with a partition leader is set to <code>2</code>. Replicas are copies of partitions in a topic. Partition replicas are distributed over multiple brokers in the cluster to ensure topic availability if a broker fails. When a follower replica is in sync with a partition leader, the follower replica can become the new partition leader if needed.</p>
+<p><strong>Replicas</strong>: For this release of Streams for Apache Kafka, the replicas are preconfigured. On a trial Kafka instance, whichg only consists of one broker, the number of partition replicas for the topic and the minimum number of follower replicas that must be in sync with a partition leader are set to <code>1</code>. Replicas are copies of partitions in a topic. Partition replicas are distributed over multiple brokers in the cluster to ensure topic availability if a broker fails. When a follower replica is in sync with a partition leader, the follower replica can become the new partition leader if needed.</p>
 </li>
 </ul>
 </div>

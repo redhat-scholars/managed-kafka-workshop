@@ -2,22 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://redhat-scholars.github.io/managed-kafka-workshop/managed-kafka-workshop/main/01-getting-started.html</loc>
-<lastmod>2022-01-17T21:48:23.588Z</lastmod>
+<lastmod>2022-07-08T18:11:55.132Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/managed-kafka-workshop/managed-kafka-workshop/main/02-using-kcat.html</loc>
-<lastmod>2022-01-17T21:48:23.588Z</lastmod>
+<lastmod>2022-07-08T18:11:55.132Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/managed-kafka-workshop/managed-kafka-workshop/main/03-connect-streams-apache-kafka.html</loc>
-<lastmod>2022-01-17T21:48:23.588Z</lastmod>
+<lastmod>2022-07-08T18:11:55.132Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/managed-kafka-workshop/managed-kafka-workshop/main/04-bind-quarkus-application.html</loc>
-<lastmod>2022-01-17T21:48:23.588Z</lastmod>
+<lastmod>2022-07-08T18:11:55.132Z</lastmod>
 </url>
 <url>
 <loc>https://redhat-scholars.github.io/managed-kafka-workshop/managed-kafka-workshop/main/index.html</loc>
-<lastmod>2022-01-17T21:48:23.588Z</lastmod>
+<lastmod>2022-07-08T18:11:55.132Z</lastmod>
 </url>
 </urlset>
