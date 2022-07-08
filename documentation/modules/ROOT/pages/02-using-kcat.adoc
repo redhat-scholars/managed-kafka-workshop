@@ -50,7 +50,7 @@ You can also install kcat on your local machine, or run kcat as a Docker contain
 +
 image::devsandbox-container-card.png[]
 
-. In the *Image name from external registry* field, enter: `quay.io/rhosak/rhoas-tools`.
+. In the *Image name from external registry* field, enter: `quay.io/rhoas/tools`.
 
 . In the *Runtime icon* field, select `openshift`.
 
